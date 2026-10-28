@@ -19,12 +19,12 @@
 #include <SPI.h>
 #include <XPT2046_Touchscreen.h>
 #include <math.h>
+#include "secrets.h"
 
 // =========================================================
 // WIFI
 // =========================================================
-const char* WIFI_SSID = "YOUR_WIFI_SSID";       // Replace with your WiFi network name
-const char* WIFI_PASS = "YOUR_WIFI_PASSWORD";   // Replace with your WiFi password
+#include "secrets.h"
 
 // =========================================================
 // DISPLAY / TOUCH
