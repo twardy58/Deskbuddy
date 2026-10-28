@@ -13,6 +13,7 @@
 #include <WiFiClientSecure.h>
 #include <TFT_eSPI.h>
 #include <time.h>
+#include <ArduinoOTA.h>
 #include <ArduinoJson.h>
 #include <WebServer.h>
 #include <Preferences.h>
@@ -2655,6 +2656,8 @@ void setup() {
 
   tft.drawString("Connecting WiFi...", 10, 34, 2);
   connectWiFi(true);
+  ArduinoOTA.setHostname("deskbuddy");
+  ArduinoOTA.begin();
 
   tft.drawString("Syncing time...", 10, 58, 2);
   configTzTime(timezonePosixByKey(timezoneKey),
@@ -2682,6 +2685,7 @@ void setup() {
 }
 
 void loop() {
+  ArduinoOTA.handle();
   server.handleClient();
   updateWiFiConnectionState();
   updateFocusTimerState();
