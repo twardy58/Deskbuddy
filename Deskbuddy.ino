@@ -20,7 +20,7 @@
 #include <SPI.h>
 #include <XPT2046_Touchscreen.h>
 #include <math.h>
-#include "secrets.h"
+#include <WiFiManager.h>
 
 // =========================================================
 // WIFI
@@ -2573,7 +2573,12 @@ void beginWiFiConnect() {
 
   WiFi.mode(WIFI_STA);
   WiFi.setSleep(false);
-  WiFi.begin(WIFI_SSID, WIFI_PASS);
+  WiFiManager wm;
+  wm.setConfigPortalTimeout(180);
+
+  if (!wm.autoConnect("DeskBuddy-Setup")) {
+    ESP.restart();
+ }
   wifiConnectInProgress = true;
   wifiConnectStartedMs = millis();
 }
